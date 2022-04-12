@@ -1,0 +1,147 @@
+<div class="clearfix"></div>
+
+
+<!-- Titlebar
+    ================================================== -->
+<div id="titlebar" class="single">
+    <div class="container">
+
+        <div class="sixteen columns">
+            <h2>My Account</h2>
+            <nav id="breadcrumbs">
+                <ul>
+                    <li>You are here:</li>
+                    <li><a href="#">Home</a></li>
+                    <li>My Account</li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Content
+    ================================================== -->
+
+<!-- Container -->
+<div class="container">
+
+    <div class="my-account">
+
+        <ul class="tabs-nav">
+            <li class="" (click)="singin()"><a>Login</a></li>
+            <li (click)="singup()"><a>Register</a></li>
+        </ul>
+
+        <div class="tabs-container">
+            <!-- Login -->
+            <div class="tab-content" id="tab1" *ngIf="singIn">
+
+                <h3 class="margin-bottom-10 margin-top-10">Login</h3>
+
+                <form method="post" class="login" [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+                    <p class="form-row form-row-wide">
+                        <label for="mail">Email Address:</label>
+                        <input type="text" formControlName="mail" class="input-text" name="username" id="username" value="" />
+                    </p>
+                    <div *ngIf="fLogin.mail.touched && fLogin.mail.invalid" class="alert alert-danger">
+                    <div *ngIf="fLogin.mail.errors.required">
+                        mail is required
+                    </div>
+                    <div  *ngIf="fLogin.mail.hasError('email')">
+Enter a valid email                    </div>
+
+                    </div>
+                    
+
+                    <p class="form-row form-row-wide">
+                        <label for="password">Password:</label>
+                        <input class="input-text" formControlName="password" type="password" name="password" id="password" />
+                    </p>
+                    <div *ngIf="fLogin.password.touched && fLogin.password.invalid" class="alert alert-danger">
+                        <div *ngIf="fLogin.password.errors.required">Password is required.</div>
+                    </div>
+
+                    <p class="form-row">
+                        <input type="submit" class="button" name="login" value="Login" />
+
+                        <label for="rememberme" class="rememberme">
+                            <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember
+                            Me</label>
+                    </p>
+
+                    <p class="lost_password">
+                        <a href="#">Lost Your Password?</a>
+                    </p>
+
+
+                </form>
+            </div>
+
+            <!-- Register -->
+            <div class="tab-content" id="tab2" *ngIf="singUp">
+
+                <h3 class="margin-bottom-10 margin-top-10">Register</h3>
+
+                <form method="post" class="register" [formGroup]="form" (ngSubmit)="submit()">
+
+                    <p class="form-row form-row-wide">
+                        <label for="reg_email">Email Address:</label>
+                        <input type="email" formControlName="email" class="input-text" name="email" id="reg_email"
+                            value="" />
+                         <label class="text-danger" *ngIf="form.controls['email'].hasError('email')">
+                            Enter a valid email address!
+                        </label> 
+                    </p>
+
+
+                    <p class="form-row form-row-wide">
+                        <label for="reg_password">Password:</label>
+                        <input type="password" formControlName="reg_password" class="input-text" name="password"
+                            id="reg_password" />
+                            
+                    </p>
+                    <div *ngIf="f.reg_password.touched && f.reg_password.invalid" class="alert alert-danger">
+                        <div *ngIf="f.reg_password.errors.required">Password is required.</div>
+                    </div>
+                  
+
+                    <p class="form-row form-row-wide">
+                        <label for="reg_password2">Repeat Password:</label>
+                        <input type="password" formControlName="reg_password2" class="input-text" name="password"
+                            id="reg_password2" />
+                           
+                    </p>
+                        
+                    <div *ngIf="f.reg_password2.touched && f.reg_password2.invalid" class="alert alert-danger">
+                        <div *ngIf="f.reg_password2.errors.required">Password is required.</div>
+                        <div *ngIf="f.reg_password2.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+                    </div>
+
+                    
+                    
+
+
+                    <p class="form-row">
+                        <input type="submit" class="button" name="register" value="Register" />
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Footer
+    ================================================== -->
+<div class="margin-top-30"></div>
+
+
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
