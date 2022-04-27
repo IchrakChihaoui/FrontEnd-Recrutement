@@ -26,6 +26,9 @@ import { BrowseResumesComponent } from './browse-resumes/browse-resumes.componen
 import { HttpClient } from '@angular/common/http';
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 
 
 
@@ -55,7 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     HttpClientModule,
-
+    Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,

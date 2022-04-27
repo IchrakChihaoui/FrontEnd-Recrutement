@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { User } from '../models/user';
 import { ConfirmedValidator } from '../providers/custom-validators';
+import { AuthServiceService } from '../services/auth/auth-service.service';
 import { RestApiService } from '../services/rest-api.service';
-import { User } from 'c:/Users/ichrak/Desktop/JobPortal-master/src/app/models/user';
 
 
 
@@ -19,11 +21,13 @@ export class MyAccountComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
   success: string;
   submitted: boolean = false;
-  users: import("c:/Users/ichrak/Desktop/JobPortal-master/src/app/models/user").User[];
+  users: User[];
+  currentUserId: string;
 
 
 
-  constructor(private fb: FormBuilder, public restApi: RestApiService, public router: Router) {
+  constructor(private fb: FormBuilder, public restApi: RestApiService, public router: Router
+    ,public authService:AuthServiceService) {
 
     /*  this.registerForm = this.fb.group({
        email: [null, Validators.compose([
@@ -126,9 +130,10 @@ export class MyAccountComponent implements OnInit {
       let user = this.users.find(item => item.mail == this.loginForm.value.mail)
       console.log("user", user)
       if (user) {
-
-        localStorage.setItem("isAuthenticated", 'true')
-        this.router.navigate(["/index"])
+this.currentUserId=user.id 
+console.log("currect user id",this.currentUserId)  
+  this.choiceRole()
+        
       } else {
         alert("Please verify your informations or create an account ")
       }
@@ -150,6 +155,57 @@ export class MyAccountComponent implements OnInit {
 
     this.singUp = false;
     this.singIn = true;
+  }
+
+
+  choiceRole()
+  {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'WELCOME TO OUR JOBORTAL ',
+      text: "ARE YOU CONDIDATE OR EMPLOYER ? ",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'CONDIDATE',
+      cancelButtonText: 'EMPLOYER',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'thanks!',
+          'You are now registred as Condidat .',
+          'success'
+        )
+        this.authService.login();
+        this.authService.setRoleCondidat()
+        localStorage.setItem("role", 'Condidat')
+        localStorage.setItem("isAuthenticated", 'true')
+        localStorage.setItem('currentUserId',this.currentUserId)
+        this.router.navigate(["/index"])
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'thanks',
+          'You are now registred as Employer .)',
+          'success'
+          
+        )
+        this.authService.login();
+        this.authService.setRoleEmployer()
+        localStorage.setItem("role", 'Employer')
+        localStorage.setItem("isAuthenticated", 'true')
+        this.router.navigate(["/index"])
+      }
+    })
   }
 
 }

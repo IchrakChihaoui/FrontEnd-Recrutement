@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthServiceService } from '../services/auth/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -7,31 +9,64 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isAuthenticated: boolean;
+  isAuthenticated: any;
+  Employer: boolean=false;
+  Condidat: boolean=false;
+
+  isLoggedIn$: Observable<boolean>;
+  isCondidat$: Observable<boolean>;
+  isEmployer$: Observable<boolean>;
+  isCondidat: boolean;
+  isEmployer: boolean;
 
 
-  constructor(public router:Router) { }
+
+
+
+  constructor(public router:Router,public authService:AuthServiceService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.isCondidat$ = this.authService.isCondidat;
+    this.isEmployer$ = this.authService.isEmployer;
 
-    if(localStorage.getItem("isAuthenticated"))
+    this.isLoggedIn$.subscribe((val)=>{
+      this.isAuthenticated=val
+    })
+
+    this.isCondidat$.subscribe((val)=>{
+      this.isCondidat=val
+    })
+
+    this.isEmployer$.subscribe((val)=>{
+      this.isEmployer=val
+    })
+
+    this.syncTemplate()
+    }
+
+    syncTemplate()
     {
-          this.isAuthenticated=true
-          console.log("isAuthenticated", this.isAuthenticated)
-    }else
+      
+    if(localStorage.getItem("role")=="Condidat")
     {
-
-      this.isAuthenticated=false
-      console.log("isAuthenticated", this.isAuthenticated)
-
+      this.Employer=false
+          this.Condidat=true
+    }else if(localStorage.getItem("role")=="Employer")
+    {
+      this.Employer=true
+      this.Condidat=false
 
     }
     }
+
+    
 
     logout()
     {
       localStorage.clear();
-      this.router.navigate(["/my-account"])
+      this.authService.resetRole();
+      this.authService.logout();
     }
 
     login(){
