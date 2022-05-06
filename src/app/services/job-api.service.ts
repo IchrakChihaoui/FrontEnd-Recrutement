@@ -8,7 +8,7 @@ import { Job } from '../models/job';
 })
 export class JobApiService {
 
-  baseUrl = "http://localhost:3000/";
+  baseUrl = "http://localhost:3000/api";
   apiUrl = this.baseUrl ;
 
   constructor(private http:HttpClient) { 
@@ -16,12 +16,12 @@ export class JobApiService {
 
   getJobs():Observable<Job[]>
   { 
-    return this.http.get<Job[]>(this.apiUrl+"job")
+    return this.http.get<Job[]>(this.apiUrl+"/job/findall")
   }
 
   createJobs(job:Job):Observable<any>
   {
-  return this.http.post(this.apiUrl+"job", job, {observe: 'response'})
+  return this.http.post(this.apiUrl+"/job/save", job, {observe: 'response'})
   
   }
 }

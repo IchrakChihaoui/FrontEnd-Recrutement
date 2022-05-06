@@ -5,7 +5,7 @@ export class Job {
          Title: string ;
          Location: string ;
          Type: string ;
-         Category: any[] ;
+         //Category: string ;
          Tags: string ;
          Description: string ;
          Closing_Date: string ;
@@ -21,7 +21,7 @@ export class Job {
          Title: string ,
          Location: string ,
          Type: string ,
-         Category: any[] ,
+        // Category: string ,
          Tags: string ,
          Description: string ,
          Closing_Date: string ,
@@ -36,7 +36,7 @@ export class Job {
         this.Title=Title ;
         this.Location=Location ;
         this.Type=Type ;
-        this.Category=Category ;
+        //this.Category=Category ;
         this.Tags=Tags ;
         this.Description=Description ;
         this.Closing_Date=Closing_Date ;

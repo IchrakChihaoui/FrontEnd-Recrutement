@@ -7,7 +7,7 @@
 	
 				<!-- Logo -->
 				<div id="logo">
-					<h1><a href="/index"><img src="../../assets/logo.png" alt="Work Scout" /></a></h1>
+					<h1><a [routerLink]="['/index']"><img src="../../assets/logo.png" alt="Work Scout" /></a></h1>
 				</div>
 	
 				<!-- Menu -->
@@ -20,7 +20,7 @@
 	
 				
 	
-						<li *ngIf="isCondidat"><a href="/#">For Candidates</a>
+						<li *ngIf="isCondidat"><a>For Candidates</a>
 							<ul>
 								<li><a [routerLink]="['/browse-jobs']">Browse Jobs</a></li>
 								<li><a [routerLink]="['/browse-categories']">Browse Categories</a></li>
@@ -30,7 +30,7 @@
 							</ul>
 						</li>
 	
-						<li *ngIf="isEmployer"><a href="/#">For Employers</a>
+						<li *ngIf="isEmployer"><a>For Employers</a>
 							<ul>
 								<li><a [routerLink]="['/add-job']">Add Job</a></li>
 								<li><a [routerLink]="['/manage-jobs']">Manage Jobs</a></li>

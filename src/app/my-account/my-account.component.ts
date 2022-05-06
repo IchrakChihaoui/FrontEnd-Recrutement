@@ -6,6 +6,7 @@ import { User } from '../models/user';
 import { ConfirmedValidator } from '../providers/custom-validators';
 import { AuthServiceService } from '../services/auth/auth-service.service';
 import { RestApiService } from '../services/rest-api.service';
+import { SharedService } from '../services/shared.service';
 
 
 
@@ -27,7 +28,7 @@ export class MyAccountComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, public restApi: RestApiService, public router: Router
-    ,public authService:AuthServiceService) {
+    ,public authService:AuthServiceService, public shar:SharedService) {
 
     /*  this.registerForm = this.fb.group({
        email: [null, Validators.compose([
@@ -123,6 +124,7 @@ export class MyAccountComponent implements OnInit {
 
 
   login() {
+    
     if (this.loginForm.invalid) {
       return;
     } else {
@@ -130,8 +132,10 @@ export class MyAccountComponent implements OnInit {
       let user = this.users.find(item => item.mail == this.loginForm.value.mail)
       console.log("user", user)
       if (user) {
-this.currentUserId=user.id 
+this.currentUserId=user._id 
 console.log("currect user id",this.currentUserId)  
+//localStorage.setItem("currentUserId",this.currentUserId)
+this.shar.setID(this.currentUserId)
   this.choiceRole()
         
       } else {
@@ -187,7 +191,7 @@ console.log("currect user id",this.currentUserId)
         this.authService.setRoleCondidat()
         localStorage.setItem("role", 'Condidat')
         localStorage.setItem("isAuthenticated", 'true')
-        localStorage.setItem('currentUserId',this.currentUserId)
+       
         this.router.navigate(["/index"])
       } else if (
         /* Read more about handling dismissals below */

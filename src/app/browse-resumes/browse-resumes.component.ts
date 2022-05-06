@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Resume } from '../models/resume';
+import { ResumeService } from '../services/resume.service';
 
 @Component({
   selector: 'app-browse-resumes',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browse-resumes.component.css']
 })
 export class BrowseResumesComponent implements OnInit {
+  listresume: Resume[];
 
-  constructor() { }
+  constructor( public resumeservice:ResumeService) { }
 
   ngOnInit(): void {
+    this.getResume()
   }
 
+  getResume(){
+    this.resumeservice.getResume().subscribe(value=>{
+      this.listresume=value
+      console.log(this.listresume)
+  })
+  }
 }

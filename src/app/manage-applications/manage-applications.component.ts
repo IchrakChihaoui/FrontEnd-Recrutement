@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AplyService } from '../services/aply.service';
 
 @Component({
   selector: 'app-manage-applications',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageApplicationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public aply:AplyService) { }
 
   ngOnInit(): void {
+  }
+
+  getaply(){
+    
   }
 
 }

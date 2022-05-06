@@ -8,19 +8,19 @@ import { User } from '../models/user';
 })
 export class RestApiService {
 
-  baseUrl = "http://localhost:3000/";
+  baseUrl = "http://localhost:3000/api";
   apiUrl = this.baseUrl ;
 
   constructor(private http:HttpClient) { }
 
   getUsers():Observable<User[]>
   { 
-    return this.http.get<User[]>(this.apiUrl+"users")
+    return this.http.get<User[]>(this.apiUrl+"/user/findall")
   }
 
   createUser(user:User):Observable<any>
   {
-  return this.http.post(this.apiUrl+"users", user, {observe: 'response'})
+  return this.http.post(this.apiUrl+"/user/save", user)
   
   }
   

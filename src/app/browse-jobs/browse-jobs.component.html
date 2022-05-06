@@ -33,7 +33,7 @@
 
 		<ul class="job-list full">
 
-			<li *ngFor="let item of jobs | filter: filterTerm"><a href="/job-page" >
+			<li *ngFor="let item of jobs | filter: filterTerm"   (click)="getidjob(item._id)"><a >
 				<img src="assets/job-list-logo-01.png" alt="">
 				<div class="job-list-content">
 					<h4>{{item.Title}} <span class="full-time">{{item.Type}}</span></h4>

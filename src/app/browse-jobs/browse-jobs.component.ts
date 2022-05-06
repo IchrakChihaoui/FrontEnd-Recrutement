@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Job } from '../models/job';
 import { JobApiService } from '../services/job-api.service';
 
@@ -14,7 +15,7 @@ export class BrowseJobsComponent implements OnInit {
   filteCity:string;
 
 
-  constructor(public jobServices:JobApiService) { }
+  constructor(public jobServices:JobApiService, public route:Router) { }
 
   ngOnInit(): void {
     console.log("term",this.filterTerm)
@@ -35,5 +36,8 @@ export class BrowseJobsComponent implements OnInit {
     this.jobs=this.jobs.filter(item=>item.Location==this.filteCity)
     console.log("after filter",this.jobs)
   }
-
+ getidjob(id:any){
+   this.route.navigate(['/job-page'],{queryParams:{jobid:id}})
+   console.log(id)
+ }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { JobApiService } from '../services/job-api.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-add-job',
@@ -12,12 +13,14 @@ import { JobApiService } from '../services/job-api.service';
 export class AddJobComponent implements OnInit {
 
   formulaire:FormGroup=new FormGroup({})
-  constructor(private fb: FormBuilder,public jobService:JobApiService,public route:Router) { }
+  userId: string;
+  constructor(private fb: FormBuilder,public jobService:JobApiService,public route:Router,public shar:SharedService) { }
 
   ngOnInit(): void {
     this.validators();
     console.log(this.formulaire.value)
-
+    this.userId=this.shar.iduser,
+    console.log( this.userId)
   }
 
   validators()
@@ -27,14 +30,14 @@ export class AddJobComponent implements OnInit {
       Title: ['', [Validators.required]],
       Location: ['', [Validators.required]],
       Type: ['', [Validators.required]],
-      Category: ['', [Validators.required]],
+     // Category: ['', [Validators.required]],
       Tags: ['', [Validators.required]], 
       Description: ['', [Validators.required]], 
       Closing_Date: ['', [Validators.required]],
       Company_Name: ['', [Validators.required]],
       Website: ['', [Validators.required]],
       Twitter_Username: ['', [Validators.required]],
-      userId: localStorage.getItem('currentUserId'),
+      userId: this.shar.iduser,
 
 
     })
