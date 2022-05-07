@@ -32,13 +32,13 @@
 	<div class="sixteen columns">
 		
 		<!-- Application #1 -->
-		<div class="application">
+		<div class="application" *ngFor="let item of jobAppList">
 			<div class="app-content">
 				
 				<!-- Name / Avatar -->
 				<div class="info">
 					<img src="assets/resumes-list-avatar-01.png" alt="">
-					<span>John Doe</span>
+					<span>{{item.condidatName}}</span>
 					<ul>
 						<li><a href="#"><i class="fa fa-file-text"></i> Download CV</a></li>
 						<li><a href="#"><i class="fa fa-envelope"></i> Contact</a></li>
@@ -46,9 +46,9 @@
 				</div>
 				
 				<!-- Buttons -->
-				<div class="buttons">
+				<div class="buttons" (click)="frame.show()" >
 					
-					<a href="#three-1" class="button gray app-link"><i class="fa fa-plus-circle"></i> Show Details Condidat</a>
+					<a  class="button gray app-link"><i class="fa fa-plus-circle"  ></i> Show Details Condidat</a>
 				</div>
 				<div class="clearfix"></div>
 
@@ -76,12 +76,12 @@
 			    
 			    <!-- Third Tab -->
 			    <div class="app-tab-content"  id="three-1">
-					<i>Job name:</i>
-					<span>John Doe</span>
+					<i>Job Title:</i>
+					<span>{{item.jobTitle}}</span>
 
 
 					<i>Description:</i>
-					<span>Praesent efficitur dui eget condimentum viverra. Sed non maximus ipsum, non consequat nulla. Vivamus nec convallis nisi, sit amet egestas magna. Quisque vulputate lorem sit amet ornare efficitur. Duis aliquam est elit, sed tincidunt enim commodo sed. Fusce tempus magna id sagittis laoreet. Proin porta luctus ante eu ultrices. Sed porta consectetur purus, rutrum tincidunt magna dictum tempus. </span>
+					<span>{{item.jobDescription}}. </span>
 			    </div>
 
 			</div>
@@ -101,11 +101,75 @@
 				<div class="clearfix"></div>
 
 			</div>
+			<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Condidat cv</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <label for="form34">Condidat name</label>
+          <h5>{{item.resumeDetail.Name}}</h5>
+		  
+         
+        </div>
+        <div class="md-form mb-5">
+          <label for="form29">Condidat coordonnee</label>
+		  <ul>
+			  <li>{{item.resumeDetail.Email}}</li>
+			  <li>{{item.resumeDetail.Location}}</li>
+
+
+		  </ul>
+         
+        </div>
+        <div class="md-form mb-5">
+          <label for="form32"> Condidat Experience</label>
+		  <h5>{{item.resumeDetail.Experience}}</h5>
+
+         
+        </div>
+
+		<div class="md-form mb-5">
+			<label for="form32"> Condidat site Web</label>
+			<h5>{{item.resumeDetail.Url}}</h5>
+
+		   
+		  </div>
+
+		  
+
+        <div class="md-form mb-5">
+          <label for="form8">Condidat Education</label>
+		  <h5>{{item.resumeDetail.Education}}</h5>
+
+          
+        </div>
+
+		<div class="md-form mb-5">
+			<label for="form8">Condidat Discription</label>
+			<h5>{{item.resumeDetail.ResumeContent}}</h5>
+
+			
+		  </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        
+      </div>
+    </div>
+  </div>
+</div>
 		</div>
 
-
-		
-
-
 	</div>
+
+	<!---modqlll-->
+
+	
+
 </div>

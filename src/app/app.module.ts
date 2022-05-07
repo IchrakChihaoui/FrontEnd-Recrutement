@@ -27,6 +27,8 @@ import { HttpClient } from '@angular/common/http';
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 
 
@@ -57,6 +59,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BrowseResumesComponent,
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
     HttpClientModule,
     Ng2SearchPipeModule,
     FormsModule,

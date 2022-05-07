@@ -1,6 +1,6 @@
 export class Job {
 
-        id: string;
+        _id: string;
         Email: string;
          Title: string ;
          Location: string ;
@@ -15,7 +15,7 @@ export class Job {
          Twitter_Username:string 
          userId:string
 
-    constructor( id: string,
+    constructor( _id: string,
         userId:string,
         Email: string,
          Title: string ,
@@ -31,7 +31,7 @@ export class Job {
          Twitter_Username:string )
     {
         this.userId=userId;
-        this.id=id;
+        this._id=_id;
         this.Email=Email;
         this.Title=Title ;
         this.Location=Location ;

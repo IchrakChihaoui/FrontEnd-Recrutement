@@ -16,9 +16,9 @@
 
 					<!-- Form -->
 					<h2>Find job</h2>
-					<input type="text" class="ico-01" placeholder="job title, keywords or company name" value="" />
+					<input type="text" class="ico-01" placeholder="job title, keywords or company name" value="" [(ngModel)]="termSearch"/>
 					<input type="text" class="ico-02" placeholder="city, province or region" value="" />
-					<button><i class="fa fa-search"></i></button>
+					<button (click)="recherche()"><i class="fa fa-search" ></i></button>
 
 					<!-- Browse Jobs -->
 					<div class="browse-jobs">
@@ -68,84 +68,34 @@
 	<div class="container">
 
 		<!-- Recent Jobs -->
-		<div class="eleven columns">
+		<div class="eleven columns" >
 			<div class="padding-right">
 				<h3 class="margin-bottom-25">Recent Jobs</h3>
-				<ul class="job-list">
+				<ul class="job-list" *ngFor="let item of listjob |filter: termSearch">
 
 					<li class="highlighted"><a href="job-page">
 							<img src="assets/job-list-logo-01.png" alt="">
 							<div class="job-list-content">
-								<h4>Marketing Coordinator - SEO / SEM Experience <span
-										class="full-time">Full-Time</span></h4>
+								<h4>{{item.Title}}<span
+										class="full-time">{{item.Type}}</span></h4>
 								<div class="job-icons">
-									<span><i class="fa fa-briefcase"></i> King</span>
-									<span><i class="fa fa-map-marker"></i> Sydney</span>
+									<span><i class="fa fa-briefcase"></i> {{item.Company_Name}}</span>
+									<span><i class="fa fa-map-marker"></i> {{item.Location}}</span>
 									<span><i class="fa fa-money"></i> $100 / hour</span>
 								</div>
+								<p>{{item.Description}}</p>
 							</div>
 						</a>
 						<div class="clearfix"></div>
 					</li>
 
-					<li><a href="job-page">
-							<img src="assets/job-list-logo-02.png" alt="">
-							<div class="job-list-content">
-								<h4>Core PHP Developer for Site Maintenance <span class="part-time">Part-Time</span>
-								</h4>
-								<div class="job-icons">
-									<span><i class="fa fa-briefcase"></i> Cubico</span>
-									<span><i class="fa fa-map-marker"></i> London</span>
-									<span><i class="fa fa-money"></i> $50 / hour</span>
-								</div>
-							</div>
-						</a>
-						<div class="clearfix"></div>
-					</li>
+				
 
-					<li><a href="job-page">
-							<img src="assets/job-list-logo-03.png" alt="">
-							<div class="job-list-content">
-								<h4>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h4>
-								<div class="job-icons">
-									<span><i class="fa fa-briefcase"></i> King</span>
-									<span><i class="fa fa-map-marker"></i> Sydney</span>
-									<span><i class="fa fa-money"></i> $15 / hour</span>
-								</div>
-							</div>
-						</a>
-						<div class="clearfix"></div>
-					</li>
+				
 
-					<li><a href="job-page">
-							<img src="assets/job-list-logo-04.png" alt="">
-							<div class="job-list-content">
-								<h4>Power Systems User Experience Designer <span
-										class="internship">Internship</span></h4>
-								<div class="job-icons">
-									<span><i class="fa fa-briefcase"></i> Hexagon</span>
-									<span><i class="fa fa-map-marker"></i> London</span>
-									<span><i class="fa fa-money"></i> $75 / hour</span>
-								</div>
-							</div>
-						</a>
-						<div class="clearfix"></div>
-					</li>
+				
 
-					<li><a href="job-page">
-							<img src="assets/job-list-logo-05.png" alt="">
-							<div class="job-list-content">
-								<h4>iPhone / Android Music App Development <span class="temporary">Temporary</span>
-								</h4>
-								<div class="job-icons">
-									<span><i class="fa fa-briefcase"></i> Mates</span>
-									<span><i class="fa fa-map-marker"></i> New York</span>
-									<span><i class="fa fa-money"></i> $115 / hour</span>
-								</div>
-							</div>
-						</a>
-						<div class="clearfix"></div>
-					</li>
+				
 				</ul>
 
 				<a href="browse-jobs" class="button centered"><i class="fa fa-plus-circle"></i> Show More

@@ -20,7 +20,7 @@ export class AplyService {
    return this.http.post(this.apiUrl+"/aply/save",aply, {observe: 'response'})
   }
 
-  getaply():Observable<Aply[]>
+  getAplys():Observable<Aply[]>
   { 
     return this.http.get<Aply[]>(this.apiUrl+"/aply/findall")
   }

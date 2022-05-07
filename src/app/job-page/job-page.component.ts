@@ -29,7 +29,7 @@ export class JobPageComponent implements OnInit {
     this.jobservice.getJobs().subscribe(value=>{
       this.listjob=value
       console.log("hhhh",this.listjob)
-      this.selectjob=this.listjob.find(item=>item.id=this.idjob)
+      this.selectjob=this.listjob.find(item=>item._id==this.idjob)
       console.log("select job",this.selectjob)
     })
 
