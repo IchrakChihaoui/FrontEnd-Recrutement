@@ -1,4 +1,5 @@
 export class Resume {
+    _id:string;
    CandidatId:string;
     Name:string;
 	Email:string;
@@ -11,8 +12,9 @@ export class Resume {
     //video:string;
     Url:string
 
-    constructor(CandidatId:string ,Name:string,Email:string,Title:string,Location:string, ResumeContent:string, Education:string,Experience:string, Photo:string,video:string,Url:string)
+    constructor(_id:string, CandidatId:string ,Name:string,Email:string,Title:string,Location:string, ResumeContent:string, Education:string,Experience:string, Photo:string,video:string,Url:string)
     {
+        this._id=_id,
         this.Name=Name,
         this.Email=Email
         this.Title=Title

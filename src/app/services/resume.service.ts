@@ -22,4 +22,10 @@ export class ResumeService {
   { 
     return this.http.get<Resume[]>(this.apiUrl+"/resume/findall")
   }
+
+  delete(_id:any)
+  {
+  return this.http.delete(this.apiUrl+"/resume/delete/"+_id)
+  
+  }
 }

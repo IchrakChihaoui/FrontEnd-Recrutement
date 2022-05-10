@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { AplyService } from '../services/aply.service';
 import { JobApiService } from '../services/job-api.service';
@@ -42,10 +43,19 @@ export class JobPageComponent implements OnInit {
     let aply={
       'userid':userId,
       'idemployer':idemployer,
-      'jobid':jobid
+      'jobid':jobid,
+      'accepted':0
     }
 
     this.aplyservice.createaply(aply).subscribe(()=>{
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'aply succed',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    
       console.log("create")
     })
     

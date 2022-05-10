@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JobApiService } from '../services/job-api.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class IndexComponent implements OnInit {
  
   listjob: import("c:/Users/ichrak/Desktop/JobPortal-master-V2/src/app/models/job").Job[];
 
-  constructor(public job: JobApiService) { }
+  constructor(public job: JobApiService,public router:Router) { }
 
   ngOnInit(): void {
     
@@ -27,10 +28,21 @@ export class IndexComponent implements OnInit {
     })
   }
 
-  recherche()
+  scroll() {
+}
+
+  recherche(el: HTMLElement)
   {
-    this.listjob=this.listjob.filter(item=>item.Title==this.termSearch)
-    console.log(this.termSearch)
+    
+    el.scrollIntoView();
+
   }
+
+  aply(id:any,el: HTMLElement)
+  {
+    el.scrollIntoView();
+
+    this.router.navigate(['/job-page'],{queryParams:{jobid:id}})
+    console.log(id)  }
 
 }

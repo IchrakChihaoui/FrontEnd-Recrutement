@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { ResumeService } from '../services/resume.service';
 import { SharedService } from '../services/shared.service';
 
@@ -11,10 +12,12 @@ export class ManageResumesComponent implements OnInit {
   listresume: import("c:/Users/ichrak/Desktop/JobPortal-master-V2/src/app/models/resume").Resume[];
   curentuser: any;
   mylistresume: import("c:/Users/ichrak/Desktop/JobPortal-master-V2/src/app/models/resume").Resume[];
+  deleteresume: any;
 
   constructor(public resume:ResumeService , public shar:SharedService) { }
 
   ngOnInit(): void {
+    
     this.getresume()
     this.curentuser=this.shar.iduser
   }
@@ -27,6 +30,24 @@ export class ManageResumesComponent implements OnInit {
       console.log("mylist",this.mylistresume)
       console.log("curentuser",this.curentuser)
     })
+  }
+  delete(_id:string){
+
+    console.log("id to delete ",_id)
+
+    this.resume.delete(_id).subscribe(()=>{
+this.getresume() 
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Your  has been saved',
+  showConfirmButton: false,
+  timer: 1500
+})
+      console.log("delete")
+    })
+
+
   }
 
 }
