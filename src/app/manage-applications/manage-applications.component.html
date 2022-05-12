@@ -18,6 +18,17 @@
 		</div>
 
 	</div>
+<div class="container">
+	<form class="py-6 w-10/12 ">
+    
+		<div class="">
+		  <input
+			type="text" id="firstInput" name="firstInput" placeholder="candidat cv " 
+			class="form-control md:w-5/12 shadow-lg border-none"[(ngModel)]="recherche"/>
+		  <button class="rounded"style="left: 1300px;top: -51px;" (click)="rechercher()">search</button>
+		</div>
+	</form>
+	</div>
 </div>
 
 
@@ -67,7 +78,8 @@
 				
 
 					<div class="clearfix"></div>
-					<a href="#" class="button margin-top-15">Accept</a>
+				
+					<a  class="button margin-top-15"(click)="updateaply(item.AplyId)" >Accept</a>
 					<a href="#" class="button gray margin-top-15 delete-application">Refuse</a>
 
 			    </div>

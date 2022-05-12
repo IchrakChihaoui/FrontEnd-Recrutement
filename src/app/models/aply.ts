@@ -1,10 +1,11 @@
 export class Aply {
 
- 
+   
     userid: any;
      jobid: any ;
      idemployer:any;
      accepted:any;
+     _id: string;
     
 
 constructor( 

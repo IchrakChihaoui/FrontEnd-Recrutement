@@ -1,3 +1,4 @@
+import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { jobApplication } from '../models/jobApplication';
@@ -16,9 +17,9 @@ export class ManageApplicationsComponent implements OnInit {
   resumes: import("c:/Users/ichrak/Desktop/JobPortal-master-V2/src/app/models/resume").Resume[];
   jobs: import("c:/Users/ichrak/Desktop/JobPortal-master-V2/src/app/models/job").Job[];
   jobApplication: any[]=[];
-  jobAppList: Array<{condidatName: string,jobTitle:string, jobDescription: string,resumeDetail:any}> = [];
+  jobAppList: Array<{AplyId: string, condidatName: string,jobTitle:string, jobDescription: string,resumeDetail:any}> = [];
 
-
+  recherche:string;
   constructor(public aply:AplyService,public share:SharedService, public job:JobApiService, public resume:ResumeService ) { }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class ManageApplicationsComponent implements OnInit {
     this.aply.getAplys().subscribe(value=>{
       this.aplys=value
       let emId=this.share.iduser
-      this.aplys=this.aplys.filter(item=>item.idemployer==emId)
+      this.aplys=this.aplys.filter(item=>item.idemployer==emId && item.accepted==0)
       console.log("aplys",this.aplys)
    
       this.resume.getResume().subscribe( value=>{
@@ -50,7 +51,7 @@ export class ManageApplicationsComponent implements OnInit {
        let jobDiscription = jobDetails.Description
        
   
-       this.jobAppList.push({condidatName:condidatName,jobTitle:jobTitle,jobDescription:jobDiscription,resumeDetail:resumeDetaille})
+       this.jobAppList.push({AplyId:element._id,condidatName:condidatName,jobTitle:jobTitle,jobDescription:jobDiscription,resumeDetail:resumeDetaille})
        console.log(this.jobAppList) 
 
       });
@@ -62,8 +63,28 @@ export class ManageApplicationsComponent implements OnInit {
     cv()
 {
   
+}
+updateaply(idAply:any){
+let aply={
+    "accepted":"1"
+ }
+  this.aply.updateAply(aply,idAply).subscribe(()=>{
+    console.log("dvsdvsd")
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Candidat accepted',
+      showConfirmButton: false,
+      timer: 1500
+    }) 
+    this.getAplys()
+
     
-   
+  })
+  
+}
+rechercher(){
+  console.log("hccc")
 }
 
 

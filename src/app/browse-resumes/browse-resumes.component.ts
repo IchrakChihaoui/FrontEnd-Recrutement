@@ -9,7 +9,7 @@ import { ResumeService } from '../services/resume.service';
 })
 export class BrowseResumesComponent implements OnInit {
   listresume: Resume[];
-
+recherche:string;
   constructor( public resumeservice:ResumeService) { }
 
   ngOnInit(): void {
@@ -21,5 +21,9 @@ export class BrowseResumesComponent implements OnInit {
       this.listresume=value
       console.log(this.listresume)
   })
+  }
+  rechercher(){
+    console.log(this.recherche)
+   
   }
 }

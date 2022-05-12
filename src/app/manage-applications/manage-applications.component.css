@@ -1,0 +1,21 @@
+#firstInput {
+    border-top-left-radius: 35px ;
+    border-bottom-left-radius: 35px ;
+    border-right: 0;
+    font-family: Poppins, sans-serif;
+  }
+  
+  #secondInput {
+    border-left: 0;
+    border-top-right-radius: 35px ;
+    border-bottom-right-radius: 35px ;
+  }
+  
+  
+  #firstInput:focus{
+    box-shadow: 0 0 3px white;
+  }
+  
+  #secondInput:focus {
+    box-shadow: 0 0 3px white;
+  }

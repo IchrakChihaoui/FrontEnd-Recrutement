@@ -41,6 +41,7 @@ export class JobPageComponent implements OnInit {
     let idemployer=id
     let jobid=idjob
     let aply={
+      
       'userid':userId,
       'idemployer':idemployer,
       'jobid':jobid,

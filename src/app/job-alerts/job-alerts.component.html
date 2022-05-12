@@ -33,29 +33,23 @@
 		<table class="manage-table resumes responsive-table">
 
 			<tr>
-				<th><i class="fa fa-file-text"></i> Alert Name</th>
-				<th><i class="fa fa-calendar"></i> Date Created</th>
-				<th><i class="fa fa-tags"></i> Keywords</th>
-				<th><i class="fa fa-map-marker"></i> Location</th>
-				<th><i class="fa fa-clock-o"></i> Frequency</th>
+				<th><i class="fa fa-file-text"></i> title</th>
+				<th><i class="fa fa-calendar"></i> type</th>
+				<th><i class="fa fa-tags"></i> Location</th>
 				<th><i class="fa fa-check-square-o"></i> Status</th>
 				<th></th>
 			</tr>
 
 			<!-- Item #1 -->
-			<tr>
-				<td class="alert-name">Looking for job</td>
-				<td>September 30, 2015</td>
-				<td class="keywords">Web Developer, PHP, HTML</td>
-				<td>London</td>
-				<td>Daily</td>
-				<td>Enabled</td>
+			<tr *ngFor="let item of jobalert">
+				<td class="alert-name">{{item.title}}</td>
+				<td class="keywords">{{item.type}}</td>
+				<td>{{item.Location}}</td>
+				<td *ngIf="item.statut=='1'" style="color:rgb(14, 241, 14);">Accepted</td>
+				<td *ngIf="item.statut=='0'"style="color:orange">in progress</td>
+			
 				<td class="action">
-					<a href="#"><i class="fa fa-check-circle-o"></i> Show Results</a>
-					<a href="#"><i class="fa fa-envelope"></i> Email</a>
-					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-					<a href="#"><i class="fa  fa-eye-slash"></i> Disable</a>
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+					<button (click)="delete(item.AplyId)"><a class="delete"><i class="fa fa-remove"></i> Delete</a></button>
 				</td>
 			</tr>
 

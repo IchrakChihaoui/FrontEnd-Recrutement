@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { JobApiService } from '../services/job-api.service';
 import { SharedService } from '../services/shared.service';
 
@@ -27,6 +28,20 @@ export class ManageJobsComponent implements OnInit {
       console.log("mylist",this.mylistjob)
       console.log("currentuser",this.curentuser)
     })
+  }
+
+  delete(_id:string){
+ this.jobservice.delete(_id).subscribe(()=>{
+   this.getjob()
+   Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'deleted',
+    showConfirmButton: false,
+    timer: 1500
+  })
+ })
+    console.log(_id)
   }
 
 }

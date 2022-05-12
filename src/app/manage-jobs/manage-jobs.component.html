@@ -49,7 +49,8 @@
 				<td>{{item.Description}}</td>
 				<td class="centered">{{item.Location}}</td>
 				<td class="action">
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+					
+					<button (click)="delete(item._id)"><a  class="delete"><i class="fa fa-remove"></i> Delete</a></button>
 				</td>
 			</tr>
 					

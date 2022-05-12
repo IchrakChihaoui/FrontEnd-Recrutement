@@ -24,4 +24,9 @@ export class JobApiService {
   return this.http.post(this.apiUrl+"/job/save", job, {observe: 'response'})
   
   }
+  delete(_id:any)
+{
+return this.http.delete(this.apiUrl+"/job/delete/"+_id)
+
+}
 }

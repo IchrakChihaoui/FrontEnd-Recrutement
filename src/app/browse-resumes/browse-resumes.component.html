@@ -9,13 +9,11 @@
 			<span>We've found 92 resumes for:</span>
 			<h2>Web, Software & IT</h2>
 		</div>
-
-		<div class="six columns">
-			<a href="/add-resume" class="button">Post a Resume, It’s Free!</a>
-		</div>
+	
+			
 
 	</div>
-</div>
+
 
 
 <!-- Content
@@ -25,15 +23,15 @@
 	<div class="eleven columns">
 	<div class="padding-right">
 		
-		<form action="#" method="get" class="list-search">
-			<button><i class="fa fa-search"></i></button>
-			<input type="text" placeholder="Search freelancer services (e.g. logo design)" value=""/>
+		<div  class="list-search">
+			<button (click)="rechercher()"><i class="fa fa-search" ></i></button>
+			<input type="text" placeholder="Search freelancer services (e.g. logo design)" value="" [(ngModel)]="recherche"/>
 			<div class="clearfix"></div>
-		</form>
+		</div>
 
 		<ul class="resumes-list" >
 
-			<li><a href="/resume-page" *ngFor="let item of listresume">
+			<li><a href="/resume-page" *ngFor="let item of listresume |filter:recherche">
 				<img src="assets/resumes-list-avatar-01.png" alt="">
 				<div class="resumes-list-content">
 					<h4><span>{{item.Name}}</span></h4>

@@ -40,7 +40,7 @@ this.getresume()
 Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'Your  has been saved',
+  title: 'deleted',
   showConfirmButton: false,
   timer: 1500
 })
