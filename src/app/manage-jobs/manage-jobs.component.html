@@ -35,16 +35,16 @@
 			<tr>
 				<th><i class="fa fa-file-text"></i> Title</th>
 				<th><i class="fa fa-check-square-o"></i> type</th>
-				<th><i class="fa fa-calendar"></i> descriptipn</th>
-				<th><i class="fa fa-calendar"></i> location</th>
-				<th><i class="fa fa-user"></i> company_name</th>
+				
+				<th><i class="fa fa-calendar"></i> Description</th>
+				<th><i class="fa fa-user"></i> Location</th>
 				<th></th>
 			</tr>
 					
 			<!-- Item #1 -->
 			<tr *ngFor="let item of mylistjob">
 				<td class="title" ><a href="#">{{item.Title}} <span class="pending">(Pending Approval)</span></a></td>
-				<td class="centered">-</td>
+		
 				<td>{{item.Type}}</td>
 				<td>{{item.Description}}</td>
 				<td class="centered">{{item.Location}}</td>
